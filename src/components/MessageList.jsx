@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import Message from "./Message"
 
-const MessageList = ({ messages, currentUserId }) => {
+const MessageList = ({ messages, currentUserId, deleteMessage }) => {
 
   const bottomRef = useRef(null)
 
@@ -25,6 +25,7 @@ const MessageList = ({ messages, currentUserId }) => {
           key={msg.id}
           message={msg}
           currentUserId={currentUserId}
+          deleteMessage={deleteMessage}
         />
       ))}
 

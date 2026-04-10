@@ -1,6 +1,7 @@
 import React from "react"
+import { FiX } from "react-icons/fi"
 
-const Message = ({ message, currentUserId }) => {
+const Message = ({ message, currentUserId, deleteMessage }) => {
   const isOwnMessage = message.user_id === currentUserId
 
    // format time
@@ -20,11 +21,12 @@ const Message = ({ message, currentUserId }) => {
       <div
         style={{
           maxWidth: "60%",
-          padding: "10px 14px",
+          padding: "25px 14px 10px 14px",
           borderRadius: "12px",
           wordBreak: "break-word",
           backgroundColor: isOwnMessage ? "#4f46e5" : "#e5e7eb",
           color: isOwnMessage ? "white" : "black",
+          position: "relative", 
         }}
       >
         {/* Name (only for others) */}
@@ -40,6 +42,24 @@ const Message = ({ message, currentUserId }) => {
             {message.name || "Unknown User"}
           </div>
         )}
+        
+        {/* Delete button */}
+        {isOwnMessage && (
+          <button
+          onClick={() => deleteMessage(message.id)}
+          style={{
+            position: "absolute",
+            top: "6px",
+            right: "6px",
+            borderRadius: "50%",
+            border: "none",
+            background: "rgba(255,255,255,0.7)",
+            cursor: "pointer",
+          }}
+          >
+            <FiX size={14} color="#4f46e5" />
+        </button>
+      )}
 
         <p style={{ margin: 0 }}>{message.content}</p>
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useAuth } from "../hooks/useAuth"
+import { useNavigate } from "react-router-dom"
 
 const Auth = () => {
   const { signIn, signUp } = useAuth()
@@ -10,6 +11,8 @@ const Auth = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
+  
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,7 +31,10 @@ const Auth = () => {
 
       if (result.error) {
         setError(result.error.message)
+      } else{
+        navigate("/chat")
       }
+
     } else {
       
       result = await signUp(email, password, name)

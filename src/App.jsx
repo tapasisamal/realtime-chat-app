@@ -7,7 +7,11 @@ import Chat from "./pages/Chat"
 import { useAuth } from "./hooks/useAuth"
 
 const App = () => {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <BrowserRouter>

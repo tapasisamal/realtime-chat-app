@@ -30,6 +30,30 @@ export const useChat = (user) => {
         ])
     }
 
+    //Delete message
+    const deleteMessage = async (messageId) => {
+        console.log("DELETE CLICKED:", messageId)
+        console.log("USER:", user)
+
+        if (!user) return
+
+        // Remove instantly from UI
+        setMessages((prev) =>
+          prev.filter((msg) => msg.id !== messageId)
+        )
+        
+        // Then delete from DB
+        const { error } = await supabase
+          .from("messages")
+          .delete()
+          .eq("id", messageId)
+          .select() 
+
+        if (error) {
+            console.log("Delete error:", error)
+        }
+    }
+
      // Realtime subscription
     useEffect(() => {
         if (!user) return;
@@ -50,6 +74,18 @@ export const useChat = (user) => {
                 setMessages((prev => [...prev, payload.new]))
             }
            )
+           .on(
+            "postgres_changes",
+            {
+                event: "DELETE",
+                schema: "public",
+                table: "messages",
+            },
+            (payload) => {
+                console.log("DELETE EVENT:", payload) 
+                setMessages((prev) => prev.filter((msg) => msg.id !== payload.old.id))
+            }
+           )
            .subscribe((status) => {
               console.log(" Status:", status);
             });
@@ -59,5 +95,5 @@ export const useChat = (user) => {
         }
     }, [user])
 
-    return {messages, sendMessage}
+    return {messages, sendMessage, deleteMessage}
 }

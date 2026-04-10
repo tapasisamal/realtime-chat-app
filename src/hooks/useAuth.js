@@ -9,12 +9,10 @@ export const useAuth = () => {
      // Get current session on load
     useEffect(() => {
         const getUser = async() => {
-            const {data, error} = await supabase.auth.getUser()
+            const {data, error} = await supabase.auth.getSession()
 
-            if(data?.user) {
-                setUser(data.user)
-            } 
-            setLoading(false)
+           setUser(data?.session?.user || null)
+           setLoading(false)
         }
         getUser()
 

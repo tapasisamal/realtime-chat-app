@@ -7,7 +7,7 @@ import { FiLogOut } from "react-icons/fi"
 
 const Chat = () => {
   const { user, signOut } = useAuth()
-  const { messages, sendMessage } = useChat(user)
+  const { messages, sendMessage, deleteMessage } = useChat(user)
 
   if (!user) {
     return <p>Loading...</p>
@@ -50,6 +50,7 @@ const Chat = () => {
         <MessageList
           messages={messages}
           currentUserId={user.id}
+          deleteMessage={deleteMessage}
         />
       </div>
 
