@@ -5,6 +5,10 @@ It allows users to sign up, log in, and send messages instantly in a shared glob
 
 ---
 
+## 🌐 Live Demo
+
+🔗 [Click here to use Chat App]()
+
 ## 🛠️ Tech Stack
 
 - React.js

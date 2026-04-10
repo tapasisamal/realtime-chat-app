@@ -1,23 +1,35 @@
 import React from "react"
-import { useAuth } from "./hooks/useAuth"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+
+import Home from "./pages/Home"
 import Auth from "./pages/Auth"
 import Chat from "./pages/Chat"
+import { useAuth } from "./hooks/useAuth"
 
 const App = () => {
-  const { user, loading } = useAuth()
+  const { user } = useAuth()
 
-  // While checking session
-  if (loading) {
-    return <p>Loading...</p>
-  }
+  return (
+    <BrowserRouter>
+      <Routes>
 
-  // If not logged in → Auth page
-  if (!user) {
-    return <Auth />
-  }
+        {/* Home page */}
+        <Route path="/" element={<Home />} />
 
-  // If logged in → Chat page
-  return <Chat />
+        {/* Auth page */}
+        <Route path="/auth" element={<Auth />} />
+
+        {/* Chat page (protected route) */}
+        <Route
+          path="/chat"
+          element={
+            user ? <Chat /> : <Navigate to="/auth" />
+          }
+        />
+        
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
