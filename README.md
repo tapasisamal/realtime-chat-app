@@ -7,7 +7,7 @@ It allows users to sign up, log in, and send messages instantly in a shared glob
 
 ## 🌐 Live Demo
 
-🔗 [Click here to use Chat App]()
+🔗 [Click here to use Chat App](https://realtime-chat-v2-ruddy.vercel.app/)
 
 ## 🛠️ Tech Stack
 
@@ -35,7 +35,7 @@ It allows users to sign up, log in, and send messages instantly in a shared glob
 ## 📦 Installation & Setup
 
 ```bash
-git clone <your-repo-link>
+git clone <https://github.com/tapasisamal/realtime-chat-app>
 cd project-name
 npm install
 npm run dev

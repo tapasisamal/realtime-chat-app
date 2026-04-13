@@ -4,6 +4,7 @@ import { useChat } from "../hooks/useChat"
 import MessageList from "../components/MessageList"
 import ChatInput from "../components/ChatInput"
 import { FiLogOut } from "react-icons/fi"
+import { useState } from "react"
 
 const Chat = () => {
   const { user, signOut } = useAuth()
@@ -55,7 +56,9 @@ const Chat = () => {
       </div>
 
       {/* Input */}
-      <ChatInput sendMessage={sendMessage} />
+      <ChatInput 
+      sendMessage={sendMessage}
+      />
     </div>
   )
 }

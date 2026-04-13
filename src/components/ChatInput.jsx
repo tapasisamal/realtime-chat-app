@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { IoSend } from "react-icons/io5"
 
-const ChatInput = ({ sendMessage }) => {
+const ChatInput = ({ sendMessage, sendTyping }) => {
   const [message, setMessage] = useState("")
 
   const handleSend = async () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../services/supabaseClient";
 
-export const useChat = (user) => {
+export const useChat = (user, setIsTyping) => {
 
     const [messages, setMessages] = useState([])
 
@@ -91,9 +91,9 @@ export const useChat = (user) => {
             });
 
         return() => {
-            supabase.removeChannel(channel)
+            supabase.removeChannel(channel);
         }
     }, [user])
 
-    return {messages, sendMessage, deleteMessage}
+    return { messages, sendMessage, deleteMessage }
 }
